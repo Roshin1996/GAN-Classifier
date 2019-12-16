@@ -5,9 +5,8 @@ from models.spectralnorm import SpectralNorm
 class spectralDiscriminator(nn.Module):
 	def __init__(self,args):
 		super(spectralDiscriminator,self).__init__()
-		
 		self.d=args.dataset
-		self.s=args.img_size/16
+		self.s=args.img_size/8
 		self.cnn = nn.Sequential(
 			SpectralNorm(nn.Conv2d(args.channels, 64, 4, stride=2, padding=1)),
 			nn.LeakyReLU(0.1),
@@ -15,14 +14,12 @@ class spectralDiscriminator(nn.Module):
 			nn.LeakyReLU(0.1),
 			SpectralNorm(nn.Conv2d(128, 256, 4, stride=2, padding=1)),
 			nn.LeakyReLU(0.1),
-			SpectralNorm(nn.Conv2d(256, 512, 4, stride=2, padding=1)),
-			nn.LeakyReLU(0.1),
 		)
 		
 		self.fc = nn.Sequential(
-			SpectralNorm(nn.Linear(int(self.s*self.s*512), 256)),
+			SpectralNorm(nn.Linear(int(self.s*self.s*256), 128)),
 			nn.LeakyReLU(0.1),
-			SpectralNorm(nn.Linear(256, 1))
+			SpectralNorm(nn.Linear(128, 1))
 		)
 			
 	def forward(self, img):
