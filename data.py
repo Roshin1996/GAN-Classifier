@@ -8,9 +8,9 @@ import torchvision.transforms as transforms
 # Resize all images to 32 * 32 and normalize them to mean = 0 and standard-deviation = 1 based on statistics collected from the training set
 
 data_transforms = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 
@@ -55,60 +55,60 @@ def initialize_data(folder):
 #Additional transformations used for data augmentation
 
 data_rotate = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.RandomRotation(15),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 
 data_shear = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.RandomAffine(degrees = 15,shear=2),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 data_translate = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.RandomAffine(degrees = 15,translate=(0.1,0.1)),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 data_center = transforms.Compose([
-	transforms.Resize((36, 36)),
-    transforms.CenterCrop(32),
+	transforms.Resize((72, 72)),
+    transforms.CenterCrop(64),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 data_brightnesstransform = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.ColorJitter(brightness=1),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 data_saturationtransform = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.ColorJitter(saturation=1),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 data_huetransform = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.ColorJitter(hue=0.25),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 data_contrasttransform = transforms.Compose([
-	transforms.Resize((32, 32)),
+	transforms.Resize((64, 64)),
     transforms.ColorJitter(contrast=1),
     transforms.ToTensor(),
-    transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
+    #transforms.Normalize((0.3337, 0.3064, 0.3171), ( 0.2672, 0.2564, 0.2629))
 ])
 
 

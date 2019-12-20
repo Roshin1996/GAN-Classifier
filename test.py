@@ -25,11 +25,12 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before logging training status')
 parser.add_argument("--img_size", type=int, default=32, help="size of each image dimension")
+parser.add_argument("--g", type=int, default=1, help="generator")
+parser.add_argument("--c", type=int, default=1, help="classifier")
 args = parser.parse_args()
 
 torch.manual_seed(args.seed)
 
-train_loss=[]
 val_loss=[]
 
 
@@ -51,10 +52,10 @@ val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
 from models.classifier import Net
 from models.real_nvp import RealNVP
 model = Net()
-model.load_state_dict(torch.load('./savedmodels/model_36.pth'))
+model.load_state_dict(torch.load('model_{}.pth'.format(args.c)))
 model=model.cuda()
 generator=RealNVP(num_scales=2, in_channels=3, mid_channels=64, num_blocks=8)
-generator.load_state_dict(torch.load('./savedmodels/generator_3'))
+generator.load_state_dict(torch.load('./savedmodels/checkpoint_num_epochs_200_dataset_stl10_batch_size_64/generator_{}'.format(args.g)))
 generator=generator.cuda()
 optimizer = optim.Adam(model.parameters(), lr=args.lr)
 
